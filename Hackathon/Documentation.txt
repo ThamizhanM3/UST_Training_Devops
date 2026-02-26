@@ -1,0 +1,45 @@
+1. Self Use Case
+    1.1 Find directory of a file using current_file_path = os.path.abspath('Notes.txt')
+    1.2 Find other files in directory
+
+2. Hackathon
+    1. Python
+        1. Multithreaded file searcher
+            Problem Statement:
+                1. The input from user must be taken
+                2. The program must search through all directories
+                3. The string must be checked if there is a match in any of the files in any of the directories
+                4. If found, the line number and file name must be displayed
+                5. This process must utilize parallel processing to minimize time taken
+        2. Disk space management
+            Problem Statement:
+                1. Check for all running processes 
+                2. Sort the top memory utilizing processes
+                3. When a certain threshold is crossed, the taks must be reported
+                4. Compress and move files safely
+    2. Shell Script
+        1. Disk usage alert
+            Problem Statement:
+                1. The program must monitor the disk usafe
+                2. When a threshold is met, the program must alert the user
+                3. The progeam must timestamp each process logs
+            Program:
+                #!/bin/bash
+
+                threshold=1
+                log="monitor.log"
+                timeStamp=$(date +"%Y-%m-%d_%H-%M-%S")
+                df -hP | grep -vE "^Filesystem|tmpfs|udev" | while read line; do
+                usage=$(echo $line | awk '{print $5}' | sed 's/%//')
+                partition=$(echo $line | awk '{print $6}')
+                if [ "$usage" -ge "$threshold" ]; then
+                message="$timeStamp Alert: disk usage on $partition is ${usage}% (Threshold" ${threshold}%)"
+                echo "$message" >> "$log"
+                echo "$message"
+                fi
+                done
+            Output:
+                [ec2-user@ip-172-31-38-219 M3]$ ./script01.sh
+                2026-02-18_11-14-53 Alert: disk usage on / is 20
+                2026-02-18_11-14-53 Alert: disk usage on /boot/efi is 13
+            
