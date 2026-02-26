@@ -1,1 +1,1 @@
-# UST_Week_1
+# UST_Training_Devops
