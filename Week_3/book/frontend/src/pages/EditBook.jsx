@@ -4,6 +4,7 @@ import Spinner from '../components/Spinner'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSnackbar } from "notistack";
+import { api } from '../lib/api'
 
 const EditBook = () => {
     const [title, setTitle] = useState('');
@@ -16,8 +17,8 @@ const EditBook = () => {
 
     useEffect(() => {
         // setLoading(true);
-        // axios
-        //     .get(`https://book-store-or5q.onrender.com/books/${id}`)
+        // api
+        //     .get(`/books/${id}`)
         //     .then((response) => {
         //         setAuthor(response.data.author)
         //         setTitle(response.data.title)

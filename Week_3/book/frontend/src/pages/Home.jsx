@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import { api } from '../lib/api'
 import Spinner from '../components/Spinner'
 import { Link } from 'react-router-dom'
 import { AiOutlineEdit } from "react-icons/ai";
@@ -15,8 +15,8 @@ const Home = () => {
     const [showType, setShowType] = useState('table')
     useEffect(() => {
         setLoading(true)
-        axios
-            .get('https://book-store-or5q.onrender.com/books')
+        api
+            .get('/books')
             .then((response) => {
                 console.log(response)
                 setBooks(response.data.data)
