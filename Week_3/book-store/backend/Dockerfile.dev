@@ -1,0 +1,18 @@
+FROM node:20-alpine
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+# Install nodemon globally (optional; you have it in deps already)
+# RUN npm i -g nodemon
+
+# Copy source
+COPY . .
+
+ENV NODE_ENV=development \
+    PORT=5555
+
+EXPOSE 5555
+
+CMD ["npm", "run", "dev"]
